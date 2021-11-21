@@ -1,0 +1,16 @@
+﻿using Newtonsoft.Json;
+
+namespace Server.Middleware.Models
+{
+    public class ExceptionInfo
+    {
+        public int StatusCode { get; set; }
+        public string Message { get; set; }
+        public string ExceptionName { get; set; }
+ 
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}
