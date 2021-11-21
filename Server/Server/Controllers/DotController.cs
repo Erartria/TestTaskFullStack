@@ -20,7 +20,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("/api/[controller]")]
-        public async Task<IReadOnlyCollection<DotResource>> GetAllPoint()
+        public async Task<IReadOnlyCollection<DotResource>> GetAllDotResources()
         {
             var dots = await _service.FindAllDots();
             var resources = _mapper.Map<List<Dot>, List<DotResource>>(dots);
@@ -39,7 +39,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("/api/[controller]/{id}")]
-        public async Task<ActionResult<DotResource>> GetPointById(int id)
+        public async Task<ActionResult<DotResource>> GetDotResourceById(int id)
         {
             var dot = await _service.FindById(id);
             var resources = _mapper.Map<Dot, DotResource>(dot);
@@ -47,7 +47,7 @@ namespace Server.Controllers
         }
 
         [HttpDelete("/api/[controller]/{id}")]
-        public async Task<ActionResult<DotResource>> DeletePointById(int id)
+        public async Task<ActionResult<DotResource>> DeleteDotById(int id)
         {
             var dot = await _service.DeleteDot(id);
             var resource = _mapper.Map<Dot, DotResource>(dot);
