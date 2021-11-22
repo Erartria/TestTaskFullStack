@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Server.Data
 {
-    public sealed class Dot
+    public class Dot
     {
         public Dot()
         {

@@ -14,7 +14,7 @@ namespace Server.Middleware
 
         public CustomErrorHandlerMiddleware(RequestDelegate next)
         {
-            this._next = next;
+            _next = next;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -28,14 +28,14 @@ namespace Server.Middleware
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
-        
-        
+
+
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)GetErrorCode(exception);
- 
-            return context.Response.WriteAsync(new ExceptionInfo()
+
+            return context.Response.WriteAsync(new ExceptionInfo
             {
                 ExceptionName = exception.GetType().Name,
                 StatusCode = context.Response.StatusCode,

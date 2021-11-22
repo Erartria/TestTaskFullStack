@@ -32,9 +32,8 @@ namespace Server.Controllers
         /// </summary>
         /// <returns>View that located at Views/Dot/Index.cshtml</returns>
         [HttpGet("/view")]
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            ViewData["Message"] = "Your application description page.";
             return View();
         }
 

@@ -11,7 +11,7 @@
             let dotAndCommentGroup = new Konva.Group({
                 name: jsonDot.id
             });
-            let dot = makeDot(jsonDot.x, jsonDot.y, jsonDot.radius, jsonDot.color,jsonDot.id);
+            let dot = makeDot(jsonDot.x, jsonDot.y, jsonDot.radius, jsonDot.color, jsonDot.id);
             dotAndCommentGroup.add(dot)
             dot.on("dblclick", () => dblclickHandler(jsonDot, dotAndCommentGroup, layer))
             let commentGroup = createGroupOfComments(jsonDot.comments, jsonDot.x, jsonDot.y, (jsonDot.radius + 10));
@@ -20,14 +20,14 @@
         })
         layer.add(groups);
     })
-        .catch(()=>{
+        .catch(() => {
             window.alert("Something went wrong")
         })
     canvas.add(layer);
 }
 
 function sendAjaxRequest(method, url, body = null) {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(method.toUpperCase(), url, true);
 
@@ -53,10 +53,10 @@ function sendAjaxRequest(method, url, body = null) {
 
 function makeDot(x, y, r, fill, name) {
     return new Konva.Circle({
-        x:x,
-        y:y,
-        radius:r,
-        fill:fill,
+        x: x,
+        y: y,
+        radius: r,
+        fill: fill,
         name: name
     });
 }
@@ -69,9 +69,9 @@ function createGroupOfComments(comments,
                                textSize = 18,
                                textColor = "black") {
     let group = new Konva.Group()
-    for(let i = 0; i < comments.length; i++) {
+    for (let i = 0; i < comments.length; i++) {
         let label = new Konva.Label({
-            x: x - comments[i].text.length * textSize / 1.328 /2.9,
+            x: x - comments[i].text.length * textSize / 1.328 / 2.9,
             y: y + offsetY + i * (textSize * 1.328 + 3 + between)
         });
         let tag = new Konva.Tag({
@@ -96,11 +96,11 @@ function createGroupOfComments(comments,
 
 function dblclickHandler(jsonDot, dotAndCommentGroup, layer) {
     sendAjaxRequest("delete", "/api/dot/" + jsonDot.id)
-        .then(()=>{
+        .then(() => {
             dotAndCommentGroup.destroy();
             layer.draw();
         })
-        .catch(()=>{
+        .catch(() => {
             window.alert("Selected dot is not existed at DB")
         })
 }

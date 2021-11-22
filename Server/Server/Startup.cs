@@ -42,10 +42,10 @@ namespace CommentsAndPoints
                 });
                 app.UseDeveloperExceptionPage();
             }
-            
+
             //try catch all exceptions
             app.UseMiddleware<CustomErrorHandlerMiddleware>();
-            
+
             app.UseStaticFiles();
             app.UseRouting();
 
@@ -59,10 +59,7 @@ namespace CommentsAndPoints
             //recreate inmemory db with data seeds
             context.Database.EnsureCreated();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
